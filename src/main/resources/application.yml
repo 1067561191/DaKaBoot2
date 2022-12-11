@@ -1,0 +1,13 @@
+logging:
+  config: classpath:log4j2-spring.xml
+server:
+  ##### 配置端口号 #####
+  port: 8086
+  servlet:
+    ##### 配置应用上下文路径 #####
+    context-path: /
+    ##### 强制转换中文编码传输 #####
+    encoding:
+      enabled: true
+      charset: UTF-8
+      force: true

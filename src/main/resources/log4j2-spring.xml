@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="FILENAME">DaKaBoot</Property>
+        <Property name="FILEPATH">logs</Property>
+        <property name="log.sql.level">debug</property>
+        <property name="MyPatternLayout">[%-5p] %d{yyyy-MM-dd HH:mm:ss} [%-10t] [%-45c] %m%n</property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout pattern="${MyPatternLayout}"/>
+        </Console>
+        <RollingRandomAccessFile name="RollingRandomAccessFile" fileName="${FILEPATH}/${FILENAME}.log" immediateFlush="false"
+                          filePattern="${FILEPATH}/$${date:yyyy-MM}/${FILENAME}-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout charset="UTF-8" pattern="${MyPatternLayout}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+
+    <Loggers>
+<!--        <Root level="info" includeLocation="false">-->
+<!--            <AppenderRef ref="Console"/>-->
+<!--            <AppenderRef ref="RollingRandomAccessFile"/>-->
+<!--        </Root>-->
+        <Logger level="info" name="icu.cming" includeLocation="false" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingRandomAccessFile"/>
+        </Logger>
+    </Loggers>
+</Configuration>

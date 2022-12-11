@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>奥兰每日打卡信息</title>
+</head>
+<body>
+<p>每天6:00打卡</p>
+<p>success:</p>
+<ul th:each="student: ${success}">
+    <li th:text="${student.getNo() + student.getXm() + student.getCzsj()}"></li>
+</ul>
+<br>
+<hr>
+<p>fail:</p>
+<ul th:each="student: ${fail}">
+    <li th:text="${student.getNo() + student.getXm() + student.getCzsj()}"></li>
+</ul>
+<br>
+<hr>
+</body>
+</html>
